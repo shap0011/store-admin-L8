@@ -14,6 +14,7 @@ This is a Vue.js app that simulates a store admin portal where users can manuall
 - [Azure OpenAI API Key](https://azure.microsoft.com/products/cognitive-services/openai-service/)
 
 ### Running the app
+
 To run the necessary services, clone the repo, open a terminal, and navigate to the repo directory.
 
 If you have access to OpenAI or Azure OpenAI, open the `docker-compose.yml` file, uncomment the `ai-services` block, and add your OpenAI or Azure OpenAI credentials.
@@ -49,7 +50,7 @@ When the app is running, you should see output similar to the following:
 
 ```text
   App running at:
-  - Local:   http://localhost:8081/ 
+  - Local:   http://localhost:8081/
   - Network: http://192.168.0.144:8081/
 
   Note that the development build is not optimized.
@@ -57,3 +58,5 @@ When the app is running, you should see output similar to the following:
 ```
 
 Open a browser and navigate to `http://localhost:8081/`. You should see the store admin app running.
+
+<!-- Lab 9 CI/CD test -->
