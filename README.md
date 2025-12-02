@@ -60,3 +60,5 @@ When the app is running, you should see output similar to the following:
 Open a browser and navigate to `http://localhost:8081/`. You should see the store admin app running.
 
 <!-- Lab 9 CI/CD test -->
+
+<!-- Lab 9 CI/CD test2 -->
