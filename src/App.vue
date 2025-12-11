@@ -13,23 +13,23 @@
 </template>
 
 <script>
-import TopNav from './components/TopNav.vue';
+import TopNav from "./components/TopNav.vue";
 
 const productServiceUrl = "/products/";
 const singleProductServiceUrl = "/product/";
 const makelineServiceUrl = "/makeline/";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    TopNav
+    TopNav,
   },
   data() {
     return {
       orders: [],
       products: [],
-      product: {}
-    }
+      product: {},
+    };
   },
   mounted() {
     this.getProducts();
@@ -39,83 +39,96 @@ export default {
       this.products.push(newProduct);
     },
     async updateProductInList(updatedProduct) {
-      const index = this.products.findIndex(product => product.id === updatedProduct.id);
+      const index = this.products.findIndex(
+        (product) => product.id === updatedProduct.id
+      );
       this.products[index] = updatedProduct;
     },
     async getProduct(id) {
       fetch(`${singleProductServiceUrl}${id}`)
-        .then(response => response.json())
-        .then(product => {
-          this.product.id = product.id
-          this.product.name = product.name
-          this.product.image = product.image
-          this.product.description = product.description
-          this.product.price = product.price
+        .then((response) => response.json())
+        .then((product) => {
+          this.product.id = product.id;
+          this.product.name = product.name;
+          this.product.image = product.image;
+          this.product.description = product.description;
+          this.product.price = product.price;
         })
-        .catch(error => {
-          console.log(error)
-          alert('Error occurred while fetching product')
-        })
+        .catch((error) => {
+          console.log(error);
+          alert("Error occurred while fetching product");
+        });
     },
     async getProducts() {
       fetch(`${productServiceUrl}`)
-        .then(response => response.json())
-        .then(products => {
-          this.products = products
+        .then((response) => response.json())
+        .then((products) => {
+          this.products = products;
         })
-        .catch(error => {
-          console.log(error)
-          alert('Error occurred while fetching products')
-        })
+        .catch((error) => {
+          console.log(error);
+          alert("Error occurred while fetching products");
+        });
     },
     async fetchOrders() {
       await fetch(`${makelineServiceUrl}order/fetch`)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
           if (data) {
             this.orders = data;
           } else {
-            console.log('No orders from server');
+            console.log("No orders from server");
           }
         })
-        .catch(error => console.error(error));
+        .catch((error) => console.error(error));
     },
-    async completeOrder(orderId) {      
+    async completeOrder(orderId) {
       // get the order and update the status
-      let order = this.orders.find(order => order.orderId === orderId);
+      let order = this.orders.find((order) => order.orderId === orderId);
       order.status = 1;
 
-      let orderObject = JSON.stringify(order)
+      let orderObject = JSON.stringify(order);
       console.log(orderObject);
 
       await fetch(`${makelineServiceUrl}order`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: orderObject
+        body: orderObject,
       })
-        .then(response => {
+        .then((response) => {
           if (!response.ok) {
-            alert('Error occurred while processing order')
+            alert("Error occurred while processing order");
           } else {
-            alert('Order successfully processed')
+            alert("Order successfully processed");
             // remove the order from the list
-            this.orders = this.orders.filter(order => order.orderId !== orderId);
+            this.orders = this.orders.filter(
+              (order) => order.orderId !== orderId
+            );
             this.$router.go(-1);
           }
         })
-        .catch(error => {
-          console.log(error)
-          alert('Error occurred while processing order')
-        })
-    }
+        .catch((error) => {
+          console.log(error);
+          alert("Error occurred while processing order");
+        });
+    },
   },
-}
+};
 </script>
 
 <style>
+body {
+  background-image: url("@/assets/BastBuy_theme.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Keeps the background in place when scrolling */
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
