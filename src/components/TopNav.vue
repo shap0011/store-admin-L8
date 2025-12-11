@@ -2,13 +2,15 @@
   <nav>
     <div class="logo">
       <a href="/">
-        <img src="/algonquin-pet-store.png" alt="Algonquin Pet Store Logo">
+        <img src="/bestbuy_logo.png" alt="Best Buy Admin Logo" class="bblogo" />
       </a>
       Admin Portal
     </div>
     <ul class="nav-links" :class="{ 'nav-links--open': isNavOpen }">
       <li><router-link to="/orders" @click="closeNav">Orders</router-link></li>
-      <li><router-link to="/products" @click="closeNav">Products</router-link></li>
+      <li>
+        <router-link to="/products" @click="closeNav">Products</router-link>
+      </li>
     </ul>
     <button class="hamburger" @click="toggleNav">
       <span class="hamburger-icon"></span>
@@ -18,24 +20,30 @@
 
 <script>
 export default {
-  name: 'TopNav',
+  name: "TopNav",
   data() {
     return {
-      isNavOpen: false
-    }
+      isNavOpen: false,
+    };
   },
   methods: {
     toggleNav() {
-      this.isNavOpen = !this.isNavOpen
+      this.isNavOpen = !this.isNavOpen;
     },
     closeNav() {
-      this.isNavOpen = false
-    }
-  }
-}
+      this.isNavOpen = false;
+    },
+  },
+};
 </script>
 
 <style scoped>
+.bblogo {
+  height: 40px;
+  width: auto;
+  margin-right: 10px;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -93,7 +101,7 @@ nav img {
 
 .hamburger-icon::before,
 .hamburger-icon::after {
-  content: '';
+  content: "";
   display: block;
   width: 20px;
   height: 2px;
