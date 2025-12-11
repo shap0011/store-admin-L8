@@ -55,8 +55,10 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-  color: white;
+.order-list h3 {
+  color: #ffffff !important;
+  font-weight: bold;
+  margin-top: 2rem;
 }
 a {
   color: #0000ff;
