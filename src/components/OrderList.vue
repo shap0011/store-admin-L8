@@ -21,7 +21,7 @@
       </tr>
     </table>
   </div>
-  <div class="order-list" v-else>
+  <div class="order-list">
     <h3>No orders to process</h3>
   </div>
 </template>
