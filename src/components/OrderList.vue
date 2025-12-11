@@ -10,7 +10,11 @@
         </tr>
       </thead>
       <tr v-for="order in orders" :key="order.orderId">
-        <td><router-link :to="`/order/${order.orderId}`">{{ order.orderId }}</router-link></td>
+        <td>
+          <router-link :to="`/order/${order.orderId}`">{{
+            order.orderId
+          }}</router-link>
+        </td>
         <td>{{ order.customerId }}</td>
         <td>{{ order.status }}</td>
         <td>{{ orderTotal(order) }}</td>
@@ -19,40 +23,43 @@
   </div>
   <div class="order-list" v-else>
     <h3>No orders to process</h3>
-  </div> 
+  </div>
 </template>
 
 <script>
-  export default {
-    name: 'OrderList',
-    props: ['orders'],
-    emits: ['fetchOrders', 'completeOrder'],
-    computed: {
-      hasOrders() {
-        return this.orders.length > 0
-      }
+export default {
+  name: "OrderList",
+  props: ["orders"],
+  emits: ["fetchOrders", "completeOrder"],
+  computed: {
+    hasOrders() {
+      return this.orders.length > 0;
     },
-    methods: {
-      fetchOrders() {
-        this.$emit('fetchOrders')
-      },
-      orderTotal(order) {
-        let total = 0;
-        order.items.forEach(item => {
-          total += item.price * item.quantity;
-        });
-        return total.toFixed(2);
-      }
+  },
+  methods: {
+    fetchOrders() {
+      this.$emit("fetchOrders");
     },
-    beforeMount() {
-      this.fetchOrders()
-    }
-  }
+    orderTotal(order) {
+      let total = 0;
+      order.items.forEach((item) => {
+        total += item.price * item.quantity;
+      });
+      return total.toFixed(2);
+    },
+  },
+  beforeMount() {
+    this.fetchOrders();
+  },
+};
 </script>
 
 <style scoped>
+h3 {
+  color: white;
+}
 a {
-  color: #0000FF;
+  color: #0000ff;
   text-decoration: underline;
 }
 
